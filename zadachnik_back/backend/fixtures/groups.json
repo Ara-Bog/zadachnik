@@ -1,0 +1,98 @@
+[
+  {
+    "model": "backend.Groups",
+    "pk": 1,
+    "fields": {
+      "name": "ИС-1",
+      "direction_traning": 1
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 2,
+    "fields": {
+      "name": "ИС-2",
+      "direction_traning": 1
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 3,
+    "fields": {
+      "name": "ИС-3",
+      "direction_traning": 1
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 4,
+    "fields": {
+      "name": "ИБ-1",
+      "direction_traning": 2
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 5,
+    "fields": {
+      "name": "ИБ-2",
+      "direction_traning": 2
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 6,
+    "fields": {
+      "name": "ИБ-3",
+      "direction_traning": 2
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 7,
+    "fields": {
+      "name": "МО-1",
+      "direction_traning": 3
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 8,
+    "fields": {
+      "name": "МО-2",
+      "direction_traning": 3
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 9,
+    "fields": {
+      "name": "МО-3",
+      "direction_traning": 3
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 10,
+    "fields": {
+      "name": "АД-1",
+      "direction_traning": 4
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 11,
+    "fields": {
+      "name": "АД-2",
+      "direction_traning": 4
+    }
+  },
+  {
+    "model": "backend.Groups",
+    "pk": 12,
+    "fields": {
+      "name": "АД-3",
+      "direction_traning": 4
+    }
+  }
+]

@@ -1,0 +1,32 @@
+.login_wrap {
+  height: 100%;
+  display: flex;
+  grid-column: 3 span;
+}
+
+.login_content {
+  justify-items: center;
+  gap: 30px;
+  display: grid;
+  margin: auto;
+}
+
+.login_content__form {
+  display: grid;
+  justify-items: center;
+  background-color: #fff;
+  padding: 30px;
+  gap: 30px;
+  width: 340px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.login_content__form__content {
+  display: grid;
+  width: 100%;
+  gap: 15px;
+}

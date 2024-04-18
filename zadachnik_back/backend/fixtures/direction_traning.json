@@ -1,0 +1,30 @@
+[
+  {
+    "model": "backend.DirectionTraning",
+    "pk": 1,
+    "fields": {
+      "name": "Информационные системы"
+    }
+  },
+  {
+    "model": "backend.DirectionTraning",
+    "pk": 2,
+    "fields": {
+      "name": "Информационная безопасность"
+    }
+  },
+  {
+    "model": "backend.DirectionTraning",
+    "pk": 3,
+    "fields": {
+      "name": "Машинное обучение"
+    }
+  },
+  {
+    "model": "backend.DirectionTraning",
+    "pk": 4,
+    "fields": {
+      "name": "Анализ данных"
+    }
+  }
+]

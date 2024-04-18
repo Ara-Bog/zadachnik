@@ -1,0 +1,292 @@
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Interfaces';
+  src: url('../public/fonts/TTInterfaces-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+* {
+  font-family: 'TT Interfaces';
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+}
+
+body {
+  --main_bg: #F3F2FA;
+  --orange: #F84F39;
+  --gray: #4f4d7a;
+  --black: #26253B;
+  --green: #629C28;
+  --opacity_red: #F84F3926;
+  --opacity_green: #E6F6D1;
+  background-color: var(--main_bg);
+  color: var(--black);
+}
+
+.bg--red {
+  background-color: var(--opacity_red);
+}
+
+.bg--green {
+  background-color: var(--opacity_green);
+}
+
+.bg--orange {
+  background-color: var(--orange);
+}
+
+.color--green {
+  color: var(--green);
+}
+
+.color--orange {
+  color: var(--orange);
+}
+
+.App {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 50px;
+  min-height: 100vh;
+}
+
+.App>div:first-child {
+  padding-left: 2.6vw;
+}
+
+.App>div:last-child {
+  padding-right: 2.6vw;
+}
+
+textarea,
+input {
+  border: 1px solid #EAECF0;
+  background-color: #fff;
+  padding: 12px 13px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--gray);
+  border-radius: 8px;
+  resize: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+
+textarea:focus-visible,
+input:focus-visible {
+  border-color: var(--orange);
+  outline: none;
+}
+
+.fill-button {
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+  height: fit-content;
+  color: #fff;
+  padding: 14px;
+  width: fit-content;
+  border: 1px solid var(--orange);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.border-button {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 12px;
+  text-align: center;
+  color: var(--orange);
+  padding: 16px 12px;
+  width: fit-content;
+  height: fit-content;
+  background-color: #fff;
+  border: 1px solid var(--orange);
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.border-button:hover {
+  background-color: var(--orange);
+  color: #fff;
+}
+
+.opacity-button {
+  display: flex;
+  cursor: pointer;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  word-wrap: unset;
+  height: fit-content;
+  gap: 5px;
+  white-space: nowrap;
+  align-items: center;
+  border: none;
+  width: fit-content;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.button-text {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  border: none;
+  background-color: transparent;
+}
+
+textarea:read-only,
+input:read-only {
+  background-color: #1018280D;
+}
+
+textarea:read-only:focus,
+input:read-only:focus {
+  border-color: #EAECF0;
+}
+
+.loading_wrap {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "model": "backend.CustomUser",
+    "pk": 1,
+    "fields": {
+      "surename": "Жуков",
+      "name": "Никита",
+      "midname": "Максимович",
+      "discription": "Очень люблю путешествовать и фотографировать.",
+      "email": "zhukovnm@example.com",
+      "group": 1
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 2,
+    "fields": {
+      "surename": "Козлова",
+      "name": "Алина",
+      "midname": "Владимировна",
+      "discription": "Студентка 4 курса, интересуюсь историей и искусством.",
+      "email": "kozlovaav@example.com",
+      "group": 2
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 3,
+    "fields": {
+      "surename": "Смирнов",
+      "name": "Артемий",
+      "midname": "Михайлович",
+      "discription": "Люблю читать книги и играть в футбол.",
+      "email": "smirnovam@example.com",
+      "group": 4
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 4,
+    "fields": {
+      "surename": "Попов",
+      "name": "Егор",
+      "midname": "Алексеевич",
+      "discription": "Я - страстный киноман и гитарист.",
+      "email": "popovea@example.com",
+      "group": 4
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 5,
+    "fields": {
+      "surename": "Воронова",
+      "name": "Вероника",
+      "midname": "Витальевна",
+      "email": "voronovavv@example.com",
+      "group": 7
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 6,
+    "fields": {
+      "surename": "Иванов",
+      "name": "Кирилл",
+      "midname": "Игоревич",
+      "discription": "Интересуюсь программированием и исследованием новых технологий.",
+      "email": "ivanovki@example.com",
+      "avatar": "avatars/teacher_man_1.jpg",
+      "is_teacher": true
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 7,
+    "fields": {
+      "surename": "Кузнецова",
+      "name": "Анастасия",
+      "midname": "Сергеевна",
+      "discription": "Люблю путешествовать и узнавать новые культуры.",
+      "email": "kuznetsovass@example.com",
+      "avatar": "avatars/teacher_woman_1.jpg",
+      "is_teacher": true
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 8,
+    "fields": {
+      "surename": "Соколова",
+      "name": "Екатерина",
+      "midname": "Дмитриевна",
+      "email": "sokolovaed@example.com",
+      "avatar": "avatars/teacher_woman_2.jpg",
+      "is_teacher": true
+    }
+  },
+  {
+    "model": "backend.CustomUser",
+    "pk": 9,
+    "fields": {
+      "surename": "Лебедев",
+      "name": "Даниил",
+      "midname": "Артемович",
+      "discription": "Люблю читать книги и писать стихи.",
+      "email": "lebedevda@example.com",
+      "avatar": "avatars/teacher_man_2.jpg",
+      "is_teacher": true
+    }
+  }
+]

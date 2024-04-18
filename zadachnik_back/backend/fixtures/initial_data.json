@@ -1,0 +1,72 @@
+[
+  {
+    "model": "backend.Actions",
+    "pk": 1,
+    "fields": {
+      "name": "Запрос"
+    }
+  },
+  {
+    "model": "backend.Actions",
+    "pk": 2,
+    "fields": {
+      "name": "Подтверждение"
+    }
+  },
+  {
+    "model": "backend.Actions",
+    "pk": 3,
+    "fields": {
+      "name": "Отказ"
+    }
+  },
+  {
+    "model": "backend.Actions",
+    "pk": 4,
+    "fields": {
+      "name": "Отмена"
+    }
+  },
+  {
+    "model": "backend.Statuses",
+    "pk": 1,
+    "fields": {
+      "name": "Активна"
+    }
+  },
+  {
+    "model": "backend.Statuses",
+    "pk": 2,
+    "fields": {
+      "name": "Распределена"
+    }
+  },
+  {
+    "model": "backend.Statuses",
+    "pk": 3,
+    "fields": {
+      "name": "Закрыта"
+    }
+  },
+  {
+    "model": "backend.TypesTopic",
+    "pk": 1,
+    "fields": {
+      "name": "Выпускная квалификационная работа"
+    }
+  },
+  {
+    "model": "backend.TypesTopic",
+    "pk": 2,
+    "fields": {
+      "name": "Курсовая работа"
+    }
+  },
+  {
+    "model": "backend.TypesTopic",
+    "pk": 3,
+    "fields": {
+      "name": "Проектная деятельность"
+    }
+  }
+]
