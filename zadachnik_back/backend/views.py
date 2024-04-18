@@ -116,6 +116,7 @@ class MyTopicsAPIView(APIView):
         # Get the latest log for each user_from using a subquery
             latest_logs_query = Logs.objects.filter(
                 id__in=logs_query.values('user_from').annotate(max_id=Max('id')).values('max_id'))
+
             logs_data.extend(LogsSerialuzer(latest_logs_query, many=True).data)
 
             topic_data['feedback'] = latest_logs_query.count()
