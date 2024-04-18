@@ -6,7 +6,7 @@ env
 __pycache__
 /.pnp
 .pnp.js
-
+pasword.py
 # testing
 /coverage
 
