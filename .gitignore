@@ -6,7 +6,6 @@ env
 __pycache__
 /.pnp
 .pnp.js
-pasword.py
 # testing
 /coverage
 
@@ -23,3 +22,10 @@ pasword.py
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+migrations
+
+/*.fig
+/*.jpg
+
+password.py

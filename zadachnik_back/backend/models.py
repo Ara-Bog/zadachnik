@@ -114,7 +114,8 @@ class CustomUser(AbstractBaseUser):
 
     group = models.ForeignKey(Groups, null=True, blank=True,
                               on_delete=models.PROTECT, verbose_name='Группа')  # только для студентов
-    topic_is_set = models.BooleanField(default=False)  # только для студентов
+    topic_is_set = models.BooleanField(
+        default=False, verbose_name='Тема взята')  # только для студентов
 
     objects = CustomUserManager()
 

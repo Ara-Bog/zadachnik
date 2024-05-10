@@ -4,35 +4,6 @@ h1 {
   line-height: 75px;
 }
 
-.profile_wrap form {
-  display: grid;
-  gap: 20px;
-  max-width: 890px;
-  padding: 30px;
-  margin-top: 35px;
-}
-
-.profile_wrap a {
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.profile_form__row {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 2fr 3fr;
-  border-bottom: 1px solid #EAECF0;
-  padding-bottom: 20px;
-  gap: 32px;
-}
-
-.profile_form__row span {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 20px;
-  color: var(--black);
-}
-
 .topic {
   display: flex;
   flex-direction: column;
@@ -45,6 +16,12 @@ h1 {
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+}
+
+.profile_wrap a {
+  font-size: 18px;
+  margin-bottom: 20px;
+  margin-right: auto;
 }
 
 .topic__name {
@@ -140,7 +117,6 @@ h1 {
 .userPage_wrap {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   margin-top: 47px;
 }
 
@@ -150,6 +126,7 @@ h1 {
   padding: 30px 20px 0px;
   gap: 20px;
   background-color: #fff;
+  margin-bottom: 25px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -260,4 +237,9 @@ h1 {
 
 .list_wrap>h2 {
   justify-self: center;
+}
+
+.MyTopics_wrap__header>div {
+  display: flex;
+  gap: 10px;
 }

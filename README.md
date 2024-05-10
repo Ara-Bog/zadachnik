@@ -22,14 +22,6 @@ python manage.py runserver
 
 ### client
 
-cd zadachnik_back/frontend
+cd ./frontend
 
 npm start
-
-# LOGS
-
-- Доработал списки, нужно переходить к внутряку
-
-- кнопка создания темы
-
-- кнопки отклика на страницах

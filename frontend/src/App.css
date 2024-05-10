@@ -155,8 +155,32 @@ body {
   background-color: var(--orange);
 }
 
-.color--green {
+button.color--green {
   color: var(--green);
+}
+
+button.border--green {
+  border-color: var(--green);
+}
+
+button.border--green:hover {
+  background-color: var(--opacity_green);
+  color: var(--green);
+  border-color: var(--opacity_green);
+}
+
+button.color--orange {
+  color: var(--orange);
+}
+
+button.border--red {
+  border-color: var(--opacity_red);
+}
+
+button.border--red:hover {
+  background-color: var(--opacity_red);
+  border-color: var(--opacity_red);
+  color: var(--orange);
 }
 
 .color--orange {
@@ -193,6 +217,16 @@ input {
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
+}
+
+textarea {
+  height: 150px;
+}
+
+textarea:hover,
+input:hover {
+  border-color: #f84f3988;
+  outline: none;
 }
 
 textarea:focus-visible,
@@ -285,8 +319,85 @@ input:read-only:focus {
 
 .loading_wrap {
   display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   align-items: center;
   justify-content: center;
+  background-color: rgba(0, 0, 0, .3);
+}
+
+.loading_wrap>div {
+  display: flex;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.default_form {
+  display: grid;
+  gap: 20px;
+  max-width: 890px;
+  padding: 30px;
+  margin-top: 35px;
+}
+
+.default_form__footer {
+  display: flex;
+  gap: 10px;
+}
+
+.MuiDrawer-paper .default_form {
+  margin-top: 0;
+  max-width: none;
+}
+
+.default_form__row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 2fr 3fr;
+  border-bottom: 1px solid #EAECF0;
+  padding-bottom: 20px;
+  gap: 32px;
+}
+
+.default_form__row span {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--black);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 2.5px 0;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }

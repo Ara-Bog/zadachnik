@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import axiosInstance from "./axiosInstance";
+import { setError, activateLoading, closeLoading } from "./actionsSlice";
 
 const date_person = {
   userData: {
@@ -22,7 +23,6 @@ export const authSlice = createSlice({
   initialState: {
     token: Cookies.get("auth-token"),
     ...date_person,
-    error: null,
   },
   reducers: {
     signin(state, action) {
@@ -31,16 +31,14 @@ export const authSlice = createSlice({
     },
     signout(state) {
       Cookies.remove("auth-token");
+      localStorage.clear();
       return { token: null, error: null, ...date_person };
     },
     setDataUser(state, action) {
       state.userData = action.payload;
     },
-    setError(state, action) {
-      state.error = action.payload;
-    },
     addNotifies(state, action) {
-      const data = [...state.notificates, action.payload];
+      const data = [...state.notificates, ...action.payload];
       localStorage.setItem("dataNotify", JSON.stringify(data));
       state.notificates = data;
     },
@@ -51,6 +49,7 @@ export const authSlice = createSlice({
 });
 
 export const signinAsync = (login) => async (dispatch) => {
+  dispatch(activateLoading());
   try {
     const token = await axiosInstance.post("api-token-auth/", { username: login.username, password: login.password });
 
@@ -65,17 +64,36 @@ export const signinAsync = (login) => async (dispatch) => {
     dispatch(setDataUser(dataUser.data));
     dispatch(setNotifies(dataNotify.data));
     dispatch(signin(token.data.token));
-    return new Promise.resolve();
   } catch (error) {
     if (error.response && error.response.status === 401) {
       dispatch(setError("Неправильные логин или пароль"));
     } else if (error.code === "ERR_NETWORK") {
       dispatch(setError("Сервер не доступен"));
     } else {
-      console.log("test", error);
-      dispatch(setError(error.message));
+      dispatch(setError(`Неизвестная ошибка: ${error.message}`));
     }
   }
+  dispatch(closeLoading());
+};
+
+export const getCurrentData = () => async (dispatch) => {
+  dispatch(activateLoading());
+  try {
+    const dataUser = await axiosInstance.get("api/users/current-detail/");
+    localStorage.setItem("userData", JSON.stringify(dataUser.data));
+
+    dispatch(setDataUser(dataUser.data));
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      dispatch(setError("Ошибка получения данных пользователя"));
+    } else if (error.code === "ERR_NETWORK") {
+      dispatch(setError("Сервер не доступен"));
+    } else {
+      dispatch(setError(`Неизвестная ошибка: ${error.message}`));
+    }
+  }
+
+  dispatch(closeLoading());
 };
 
 export const clearNotificates = () => async (dispatch) => {
@@ -88,6 +106,6 @@ export const clearNotificates = () => async (dispatch) => {
   }
 };
 
-export const { signin, setDataUser, signout, setError, addNotifies, setNotifies } = authSlice.actions;
+export const { signin, setDataUser, signout, addNotifies, setNotifies } = authSlice.actions;
 
 export default authSlice.reducer;

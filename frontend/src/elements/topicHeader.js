@@ -1,7 +1,7 @@
 import Avatar from "@mui/material/Avatar";
 import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 
-export default function TopicHeader({ avatar, user, date_create, direction_traning, count_users, select_users }) {
+export default function TopicHeader({ avatar, user, date_create, direction_traning__str, count_users, select_users }) {
   return (
     <div className="topic__header">
       <Avatar src={`http://localhost:8000${avatar}`} sx={{ width: 40, height: 40 }}>
@@ -11,14 +11,14 @@ export default function TopicHeader({ avatar, user, date_create, direction_trani
         <span>{user}</span>
         {date_create && (
           <p>
-            {direction_traning} / {date_create}
+            {direction_traning__str} • {date_create}
           </p>
         )}
       </div>
       {count_users && count_users > 1 && (
         <div className="topic__header__counter">
           <PersonOutlineRoundedIcon sx={{ width: 20, height: 20 }} />
-          {`${select_users} из count_users`}
+          {`${select_users} из ${count_users}`}
         </div>
       )}
     </div>

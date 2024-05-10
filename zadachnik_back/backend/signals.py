@@ -13,13 +13,15 @@ def notification_created(sender, instance, created, **kwargs):
             str(instance.user_to.id),
             {
                 "type": "send_notification",
-                "user_from": str(instance.user_from),
-                "avatar": str(instance.user_from.avatar),
+                "user_from__str": str(instance.user_from),
+                "user_to__str": str(instance.user_from),
+                "avatar__to": str(instance.user_to.avatar),
+                "avatar__from": str(instance.user_from.avatar),
                 "data_created": instance.date_action.strftime(
                     "%d.%m.%Y"),
-                "topic": str(instance.topic.name),
+                "topic__str": str(instance.topic.name),
                 "topic_id": instance.topic.id,
                 "type_topic": instance.topic.type_topic.id,
-                'action': str(instance.action),
+                'action__str': str(instance.action),
             }
         )

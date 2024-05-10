@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'backend',
     'taggit',
-    # 'channels',
 ]
 
 MIDDLEWARE = [
@@ -57,8 +56,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'channels.middleware.SortingMiddleware',
-    # 'channels.middleware.DefaultAsyncMiddleware',
 ]
 
 REST_FRAMEWORK = {

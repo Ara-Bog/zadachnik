@@ -4,14 +4,24 @@ from .models import *
 
 class CustomUserSerializer(serializers.ModelSerializer):
     direction_traning = serializers.SerializerMethodField()
+    direction_traning__str = serializers.SerializerMethodField()
+    select_topic = serializers.SerializerMethodField()
 
     class Meta:
         model = CustomUser
         fields = ['name', 'surename', 'midname', 'is_teacher',
-                  'id', 'email', 'discription', 'avatar', 'group', 'direction_traning']
+                  'id', 'email', 'discription', 'avatar', 'group', 'direction_traning', 'direction_traning__str', 'select_topic']
 
     def get_direction_traning(self, obj):
+        return obj.group.direction_traning.pk if obj.group else None
+
+    def get_direction_traning__str(self, obj):
         return str(obj.group.direction_traning) if obj.group else None
+
+    def get_select_topic(self, obj):
+        if (obj.is_teacher or not obj.topic_is_set):
+            return ""
+        return TopicSerializer(Logs.objects.get(user_to=obj.id, action__id=2, topic__type_topic__in=[1, 2]).topic).data
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -23,23 +33,19 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
 
 class NotificateShortSerializer(serializers.ModelSerializer):
-    avatar = serializers.SerializerMethodField()
-    topic_id = serializers.SerializerMethodField()
-
     class Meta:
         model = Logs
-        fields = ['__all__']
-
-    def get_avatar(self, obj):
-        return str(obj.user_from.avatar)
-
-    def get_topic_id(self, obj):
-        return str(obj.topic_id)
+        fields = '__all__'
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['user_from'] = str(instance.user_from)
-        representation['topic'] = str(instance.topic.name)
+        representation['avatar__to'] = str(instance.user_to.avatar)
+        representation['avatar__from'] = str(instance.user_from.avatar)
+        representation['action__str'] = str(instance.action)
+        representation['user_from__str'] = str(instance.user_from)
+        representation['user_to__str'] = str(instance.user_to)
+        representation['topic__str'] = str(instance.topic.name)
+        representation['topic_id'] = instance.topic.id
 
         return representation
 
@@ -52,37 +58,16 @@ class TagsField(serializers.Field):
         return data
 
 
-class TopicsCardSerializer(serializers.ModelSerializer):
-    avatar = serializers.SerializerMethodField()
-    tags = TagsField(source="get_tags")
-
-    class Meta:
-        model = Topics
-        fields = ['name', 'date_create', 'discription',
-                  'id', 'avatar', 'tags', 'user', 'direction_traning']
-
-    def get_avatar(self, obj):
-        return str(obj.user.avatar)
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['tags'] = instance.tags.names()
-        representation['date_create'] = instance.date_create.strftime(
-            "%d.%m.%Y")
-        representation['user'] = str(instance.user)
-        representation['direction_traning'] = str(instance.direction_traning)
-        return representation
-
-
 class TopicSerializer(serializers.ModelSerializer):
     tags = TagsField(source="get_tags")
+    select_users = serializers.SerializerMethodField()
 
     class Meta:
         model = Topics
         fields = '__all__'
 
-    def get_date_create(self, obj):
-        return obj.date_create.strftime("%d.%m.%Y")
+    def get_select_users(self, obj):
+        return Logs.objects.filter(topic=obj.id, action__id=2).count()
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -95,9 +80,42 @@ class TopicSerializer(serializers.ModelSerializer):
         representation['user_id'] = instance.user.id
         representation['date_create'] = instance.date_create.strftime(
             "%d.%m.%Y")
-        representation['direction_traning'] = str(instance.direction_traning)
-        representation['type_topic'] = str(instance.type_topic)
-        representation['status'] = str(instance.status)
+        representation['direction_traning__str'] = str(
+            instance.direction_traning)
+        representation['type_topic__str'] = str(instance.type_topic)
+        representation['status__str'] = str(instance.status)
+        return representation
+
+    def create(self, validated_data):
+        tags_data = validated_data.pop('get_tags', None)
+        instance = Topics.objects.create(**validated_data)
+
+        if tags_data:
+            instance.tags.set(tags_data)
+
+        return instance
+
+
+class TopicsCardSerializer(serializers.ModelSerializer):
+    tags = TagsField(source="get_tags")
+    select_users = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Topics
+        fields = '__all__'
+
+    def get_select_users(self, obj):
+        return Logs.objects.filter(topic=obj.id, action__id=2).count()
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['tags'] = instance.tags.names()
+        representation['date_create'] = instance.date_create.strftime(
+            "%d.%m.%Y")
+        representation['user'] = str(instance.user)
+        representation['avatar'] = str(instance.user.avatar)
+        representation['direction_traning__str'] = str(
+            instance.direction_traning)
         return representation
 
 
@@ -107,7 +125,7 @@ class TeachersCardTopics(serializers.ModelSerializer):
 
     def __init__(self, *args, **kwargs):
         self.direction_traning = kwargs.pop('direction_traning')
-        self.type_topic = kwargs.pop('type_topic')
+        self.type_topic = kwargs.pop('type_topic', None)
         super(TeachersCardTopics, self).__init__(*args, **kwargs)
 
     class Meta:
@@ -119,7 +137,14 @@ class TeachersCardTopics(serializers.ModelSerializer):
         return str(obj)
 
     def get_topics_data(self, obj):
-        return TopicSerializer(Topics.objects.filter(user=obj, direction_traning=self.direction_traning, type_topic=self.type_topic, status=Statuses.objects.get(id=1)), many=True).data
+        queryset = Topics.objects.filter(
+            user=obj,
+            direction_traning=self.direction_traning,
+            status=Statuses.objects.get(id=1)
+        )
+        if self.type_topic:
+            queryset = queryset.filter(type_topic=self.type_topic)
+        return TopicSerializer(queryset, many=True).data
 
 
 class GroupTopicsType(serializers.ModelSerializer):
@@ -169,12 +194,26 @@ class LogsSerialuzer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['user_from'] = str(instance.user_from)
-        representation['avatar'] = str(instance.user_from.avatar)
-        representation['topic'] = str(instance.topic.name)
-        representation['topic_id'] = instance.topic.id
+        representation['user_from__str'] = str(instance.user_from)
+        representation['user_to__str'] = str(instance.user_to)
+        representation['avatar__from'] = str(instance.user_from.avatar)
+        representation['avatar__to'] = str(instance.user_to.avatar)
+        representation['topic__str'] = str(instance.topic.name)
+        representation['topic'] = instance.topic.id
 
         representation['date_action'] = instance.date_action.strftime(
             "%d.%m.%Y")
-        representation['action'] = str(instance.action)
+        representation['action__str'] = str(instance.action)
         return representation
+
+
+class DirectionTraningSerialuzer(serializers.ModelSerializer):
+    class Meta:
+        model = DirectionTraning
+        fields = '__all__'
+
+
+class TypeTopicSerialuzer(serializers.ModelSerializer):
+    class Meta:
+        model = TypesTopic
+        fields = '__all__'

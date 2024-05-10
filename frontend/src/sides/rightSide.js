@@ -9,7 +9,6 @@ import LogoutTwoToneIcon from "@mui/icons-material/LogoutTwoTone";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import BusinessCenterOutlinedIcon from "@mui/icons-material/BusinessCenterOutlined";
 import MarkEmailUnreadOutlinedIcon from "@mui/icons-material/MarkEmailUnreadOutlined";
 import { clearNotificates, addNotifies } from "../services/authSlice";
 import Feedbacks from "../components/notifyesRows";
@@ -18,7 +17,6 @@ const menuLinks = [
   { name: "Профиль", to: "/profile/info", icon: <PermIdentityIcon /> },
   { name: "Мои темы", to: "/profile/topics", icon: <ArticleOutlinedIcon /> },
   { name: "Распределенные темы", to: "/profile/confirm_topics", icon: <BookmarkBorderOutlinedIcon /> },
-  { name: "Проектная деятельность", to: "/profile/projects", icon: <BusinessCenterOutlinedIcon /> },
   { name: "Мои отклики", to: "/profile/feedback", icon: <MarkEmailUnreadOutlinedIcon /> },
 ];
 
@@ -54,7 +52,6 @@ export default function RightSide() {
 
   return (
     <div className="rightSide">
-      {console.log("test", notifyes)}
       <div className="navbar">
         <div className="navbar__user">
           <Badge
