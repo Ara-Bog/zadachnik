@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CardStudent from "../components/cardStudent";
-import CardTeacher from "../components/cardTeacher";
+import CardStudent from "../elements/cardStudent";
+import CardTeacher from "../elements/cardTeacher";
 import FetchApi from "../services/fetchApi";
 
 export default function ListTopics({ type }) {

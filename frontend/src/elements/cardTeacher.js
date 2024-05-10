@@ -1,4 +1,4 @@
-import TopicHeader from "../elements/topicHeader";
+import TopicHeader from "./topicHeader";
 
 export default function CardTeacher({ data }) {
   return (

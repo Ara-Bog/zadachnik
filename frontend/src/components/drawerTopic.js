@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Drawer, Chip, Select, TextField, Autocomplete, MenuItem, CircularProgress } from "@mui/material";
 import { STYLE_ELEMENTS, STYLE_DRAWER } from "../settings/styleMUI";
 import CloseIcon from "@mui/icons-material/Close";
-import DialogComponent from "./dialog";
+import DialogComponent from "../elements/dialog";
 import { clearDrawer, closeLoading } from "../services/actionsSlice";
 import FetchApi from "../services/fetchApi";
 

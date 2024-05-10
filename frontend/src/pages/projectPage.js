@@ -9,7 +9,7 @@ import { setOpenDrawer } from "../services/actionsSlice";
 import Feedbacks from "../components/notifyesRows";
 import { Avatar } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import DialogComponent from "../components/dialog";
+import DialogComponent from "../elements/dialog";
 
 export default function ProjectPage() {
   const [topic, setTopic] = useState(null);

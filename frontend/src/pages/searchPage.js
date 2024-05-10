@@ -2,8 +2,8 @@ import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import FetchApi from "../services/fetchApi";
 import { useDispatch, useSelector } from "react-redux";
-import CardStudent from "../components/cardStudent";
-import CardTeacher from "../components/cardTeacher";
+import CardStudent from "../elements/cardStudent";
+import CardTeacher from "../elements/cardTeacher";
 import { CircularProgress } from "@mui/material";
 
 export default function SearchPage() {

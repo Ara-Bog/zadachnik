@@ -56,7 +56,6 @@ export default function ConfirmTopics() {
           ) : null}
         </div>
       </div>
-      {console.log("ZZZ", logs)}
       <div className="MyTopics_wrap__content">
         <div className="MyTopics_wrap__content__dataGrid" style={{ gridColumn: "span 5" }}>
           <DataGrid
