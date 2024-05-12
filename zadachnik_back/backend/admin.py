@@ -5,15 +5,8 @@ from django.contrib.auth.models import Group
 from .models import *
 
 
-class CustomUserAdminForm(UserChangeForm):
-    class Meta(UserChangeForm.Meta):
-        model = CustomUser
-
-
 @admin.register(CustomUser)
-class CustomUserAdmin(admin.ModelAdmin):
-    form = CustomUserAdminForm
-    model = CustomUser
+class CustomUserAdmin(UserAdmin):
     list_display = ('email', 'name', 'midname', 'surename',
                     'is_teacher', 'group', 'is_admin')
     search_fields = ('email', 'name', 'surename')
@@ -26,6 +19,14 @@ class CustomUserAdmin(admin.ModelAdmin):
         ('Права', {'fields': ('is_teacher', 'is_admin')}),
         ('Даты', {'fields': ('last_login',)}),
     )
+    add_fieldsets = (
+        (None, {
+            'classes': ('wide',),
+            'fields': ('email', 'password1', 'password2', 'name', 'surename',
+                       'midname', 'discription', 'avatar', 'is_teacher'),
+        }),
+    )
+    filter_horizontal = ()
 
 
 @admin.register(Logs)
@@ -64,4 +65,4 @@ admin.site.register(Actions)
 admin.site.register(Statuses)
 admin.site.register(TypesTopic)
 admin.site.register(DirectionTraning)
-admin.site.unregister(Group)
+# admin.site.unregister(Group)
