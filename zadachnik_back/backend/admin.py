@@ -1,16 +1,31 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import Group
 from .models import *
 
 
+class CustomUserAdminForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = CustomUser
+
+
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
+    form = CustomUserAdminForm
     model = CustomUser
     list_display = ('email', 'name', 'midname', 'surename',
                     'is_teacher', 'group', 'is_admin')
     search_fields = ('email', 'name', 'surename')
     list_filter = ('is_teacher', 'is_admin',)
+    ordering = ('email',)
+    fieldsets = (
+        (None, {'fields': ('email', 'password')}),
+        ('Персональная информация', {'fields': ('name', 'surename',
+         'midname', 'discription', 'avatar')}),
+        ('Права', {'fields': ('is_teacher', 'is_admin')}),
+        ('Даты', {'fields': ('last_login',)}),
+    )
 
 
 @admin.register(Logs)

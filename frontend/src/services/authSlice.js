@@ -49,22 +49,31 @@ export const authSlice = createSlice({
 });
 
 export const signinAsync = (login) => async (dispatch) => {
+  // устанавливаем статус загрузки контента
   dispatch(activateLoading());
   try {
+    // получаем токен с сервера
     const token = await axiosInstance.post("api-token-auth/", { username: login.username, password: login.password });
 
+    // сохраняем токен в куках
     Cookies.set("auth-token", token.data.token);
 
+    // получаем данные пользователя
     const dataUser = await axiosInstance.get("api/users/current-detail/");
+    // сохраняем данные пользователя в локальном хранилище
     localStorage.setItem("userData", JSON.stringify(dataUser.data));
 
+    // получаем последние не прочитанные уведомления
     const dataNotify = await axiosInstance.get("api/user/notificates_short/");
+    // сохраняем уведомления в локальном хранилище
     localStorage.setItem("dataNotify", JSON.stringify(dataNotify.data));
 
+    // производим обновление состояний в redux
     dispatch(setDataUser(dataUser.data));
     dispatch(setNotifies(dataNotify.data));
     dispatch(signin(token.data.token));
   } catch (error) {
+    // обрабатываем ошибки и фиксируем их в другой система управления состояний
     if (error.response && error.response.status === 401) {
       dispatch(setError("Неправильные логин или пароль"));
     } else if (error.code === "ERR_NETWORK") {
@@ -72,8 +81,10 @@ export const signinAsync = (login) => async (dispatch) => {
     } else {
       dispatch(setError(`Неизвестная ошибка: ${error.message}`));
     }
+  } finally {
+    // загрузка контента окончена
+    dispatch(closeLoading());
   }
-  dispatch(closeLoading());
 };
 
 export const getCurrentData = () => async (dispatch) => {

@@ -99,6 +99,19 @@ class CustomUser(AbstractBaseUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 
+    groups = models.ManyToManyField(
+        'auth.Group',
+        blank=True,
+        related_name='custom_user_set',
+        related_query_name='custom_user',
+    )
+    user_permissions = models.ManyToManyField(
+        'auth.Permission',
+        blank=True,
+        related_name='custom_user_set',
+        related_query_name='custom_user',
+    )
+
     name = models.CharField(max_length=255, verbose_name='Имя')
     surename = models.CharField(max_length=255, verbose_name='Фамилия')
     midname = models.CharField(
